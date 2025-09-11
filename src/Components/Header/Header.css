@@ -1,0 +1,110 @@
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* #container{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  } */
+#addNodeButton {
+  position: relative;
+  top: -4vh;
+  right: -86.7vw;
+  padding: 8px 14px;
+  color: blue;
+  background-color: aquamarine;
+  margin-top: 10vh;
+  margin-right: 80px;
+  z-index: 1;
+  overflow: visible;
+}
+
+#addEdgeButton {
+  position: relative;
+  top: 4vh;
+  right: -75vw;
+  padding: 8px 14px;
+  color: blue;
+  background-color: aquamarine;
+  margin-top: 70px;
+  margin-right: 80px;
+  z-index: 1;
+  overflow: visible;
+}
+
+#adding_edge_form {
+  width: 10%;
+  position: 'relative';
+  z-index: 1;
+  display: 'none';
+}
+
+#adding_node_form {
+  position: 'relative';
+  z-index: 1;
+  display: none;
+}
+#parent_container{
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+}
+#left_container{
+  height: 5vh;
+  width: 9%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#navbar_container{
+  height: 5vh;
+  width: 66%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.8%;
+  position: relative;
+  right:-4%;
+}
+.non-active-link {
+  width: '16.5vw';
+  margin-top: '20px';
+  color: rgb(64, 33, 165);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  padding: 0 10px;
+}
+
+.non-active-link:hover {
+  color: darkblue;
+  background-color: #d1b8b8;
+  opacity: 0.5;
+}
+
+.active-link {
+  width: '16.5vw';
+  margin-top: '20px';
+  color: rgb(232, 47, 19);
+  font-weight: bold;
+  text-decoration: underline;
+  animation: activeLinkAnimation 0.5s ease-in-out;
+}
+
+@keyframes activeLinkAnimation {
+  from {
+    transform: scale(0.9);
+    color: orange;
+  }
+
+  to {
+    transform: scale(1);
+    color: rgb(199, 59, 24);
+  }
+}
