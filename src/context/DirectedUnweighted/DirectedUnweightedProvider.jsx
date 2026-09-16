@@ -23,12 +23,12 @@ export const DirectedUnweightedGraphProvider = ({ children }) => {
       alert("Edge Already Exist!");
       return;
     }
-    // const newEdge = {
-    //   id: `e${sourceNode}-${targetNode}`,
-    //   source: sourceNode,
-    //   target: targetNode
-    // };
-    // setEdges((prevEdges) => [...prevEdges, newEdge]);
+    const newEdge = {
+      id: `e${sourceNode}-${targetNode}`,
+      source: sourceNode,
+      target: targetNode,
+    };
+    setEdges((prevEdges) => [...prevEdges, newEdge]);
     setSourceNode('');
     setTargetNode('');
   }

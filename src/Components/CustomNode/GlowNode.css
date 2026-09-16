@@ -1,0 +1,203 @@
+.glow-node {
+  position: relative;
+  width: var(--gn-size, 56px);
+  height: var(--gn-size, 56px);
+  display: block;
+}
+
+/* Size tiers by importance */
+.glow-node.size-s {
+  --gn-size: 40px;
+}
+.glow-node.size-m {
+  --gn-size: 56px;
+}
+.glow-node.size-l {
+  --gn-size: 72px;
+}
+
+/* Category palettes */
+.glow-node.cat-cyan {
+  --gn-tint: #67e8f9;
+  --gn-deep: #0891b2;
+  --gn-halo: rgba(34, 211, 238, 0.32);
+  --gn-accent: #22d3ee;
+}
+.glow-node.cat-purple {
+  --gn-tint: #c4b5fd;
+  --gn-deep: #7c3aed;
+  --gn-halo: rgba(167, 139, 250, 0.32);
+  --gn-accent: #a78bfa;
+}
+.glow-node.cat-emerald {
+  --gn-tint: #6ee7b7;
+  --gn-deep: #059669;
+  --gn-halo: rgba(52, 211, 153, 0.32);
+  --gn-accent: #34d399;
+}
+.glow-node.cat-amber {
+  --gn-tint: #fcd34d;
+  --gn-deep: #d97706;
+  --gn-halo: rgba(251, 191, 36, 0.32);
+  --gn-accent: #fbbf24;
+}
+.glow-node.cat-rose {
+  --gn-tint: #fda4af;
+  --gn-deep: #e11d48;
+  --gn-halo: rgba(251, 113, 133, 0.32);
+  --gn-accent: #fb7185;
+}
+
+/* Body: soft radial gradient + halo */
+.gn-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 28%, var(--gn-tint), var(--gn-deep) 72%);
+  box-shadow:
+    0 0 22px 4px var(--gn-halo),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.94);
+  transition: transform 0.25s var(--spring), box-shadow 0.25s ease;
+}
+
+.gn-icon {
+  width: 42%;
+  height: 42%;
+}
+
+.glow-node.is-hovered .gn-body {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 34px 9px var(--gn-halo),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Label chip */
+.gn-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-elevated);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glass);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Weight badge */
+.gn-badge {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--gn-accent);
+  color: #0b0e14;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-canvas);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.gn-badge.is-high {
+  background: var(--accent-amber);
+}
+
+/* Tooltip */
+.gn-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  z-index: 30;
+  pointer-events: none;
+}
+.gn-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--bg-elevated);
+}
+.gn-tt-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.gn-tt-meta {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hover-reveal actions */
+.gn-actions {
+  position: absolute;
+  top: calc(100% + 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+}
+.glow-node:hover .gn-actions,
+.react-flow__node.selected .gn-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gn-action {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s var(--spring);
+}
+.gn-action:hover {
+  background: var(--accent-emerald-soft, rgba(52, 211, 153, 0.16));
+  transform: scale(1.12);
+}
+.gn-action.danger:hover {
+  background: var(--accent-rose-soft, rgba(251, 113, 133, 0.16));
+}

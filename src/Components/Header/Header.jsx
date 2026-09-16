@@ -1,130 +1,67 @@
-import './Header.css'
+import './Header.css';
 import { usePageContext } from '../../context/PageTracker/PageContext';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 
-export const EdgeWeightInput = () => {
-    const { ContextForWeighted } = usePageContext();
-    const { handleUpdateWeight, handleWeightChange } = ContextForWeighted();
+const PAGES = [
+  { to: '/', label: 'Dir · Unweighted' },
+  { to: '/Directed-Weighted-Graph', label: 'Dir · Weighted' },
+  { to: '/Undirected-Unweighted-Graph', label: 'Undir · Unweighted' },
+  { to: '/Undirected-Weighted-Graph', label: 'Undir · Weighted' },
+];
 
-    return <>
-        <div style={{ position: "absolute", top: 10, left: 10, background: "#fff", padding: "10px" }}>
-            <label>
-                Edge Weight:
-                <input
-                    type="number"
-                    onChange={handleWeightChange}
-                    style={{ marginLeft: "10px" }}
-                />
-            </label>
-            <button onClick={handleUpdateWeight} style={{ marginLeft: "10px" }}>
-                Update
-            </button>
-        </div>
-    </>
-}
+const PAGE_LABELS = {
+  '/': 'Directed Unweighted',
+  '/Directed-Weighted-Graph': 'Directed Weighted',
+  '/Undirected-Unweighted-Graph': 'Undirected Unweighted',
+  '/Undirected-Weighted-Graph': 'Undirected Weighted',
+};
 
+/**
+ * Floating brand pill: logo, current graph type, live node/edge counts
+ * and compact graph-type tabs. All creation/editing UI lives in the
+ * Command Center and the contextual sidebar now.
+ */
 const Header = () => {
-    const { activePage, Context } = usePageContext();
-    const { nodes, setNodes, sourceNode, setSourceNode, targetNode, setTargetNode, setWeightInput, addEdge } = Context();
-    const showWeightInput = (activePage === '/Undirected-Weighted-Graph' || activePage === '/Directed-Weighted-Graph') ? true : false;
-    // const directed = (activePage === '/Directed-Unweighted-Graph' || activePage === '/Directed-Weighted-Graph') ? true : false;
-    const [nodeName, setNodeName] = useState("");
-    nodes.map(node => {
-        console.log(`Node id: ${node.id}`);
-    })
-    const addNodeWithName = async (e) => {
-        e.preventDefault();
-        if (nodeName.trim() == '') {
-            alert("Name caanot be Empty!");
-        }
-        const newNode = {
-            id: `${nodes.length + 1}`,
-            type: 'custom',
-            position: {
-                x: 150, y: 200
-            },
-            data: {
-                label: `${nodeName}`,
-            }
-        }
-        setNodes((prevNodes) => {
-            [...prevNodes, newNode];
-        })
-    }
+  const { activePage, Context } = usePageContext();
+  const ctx = Context();
 
-    return <>
-        <div id='parent_container'>
-            <div id='left_container'>
-                <img src="/img3.jpg" alt="" style={{ height: '45px', width: '55px', mixBlendMode: 'color-burn', opacity: '0.8' }} />
-                <h2>GrapiFy</h2>
-            </div>
-            <nav id='navbar_container'>
-                <NavLink to="/" className={({ isActive }) => (isActive ? "active-link" : "non-active-link")}>
-                    Directed Unweighted Graph
-                </NavLink>
-                <NavLink to="/Directed-Weighted-Graph" className={({ isActive }) => (isActive ? "active-link" : "non-active-link")}>
-                    Directed Weighted Graph
-                </NavLink>
-                <NavLink to="/Undirected-Unweighted-Graph" className={({ isActive }) => (isActive ? "active-link" : "non-active-link")}>
-                    Undirected Unweighted Graph
-                </NavLink>
-                <NavLink to="/Undirected-Weighted-Graph" className={({ isActive }) => (isActive ? "active-link" : "non-active-link")}>
-                    Undirected Weighted Graph
-                </NavLink>
-            </nav>
+  return (
+    <header className="brand-pill glass">
+      <div className="brand-left">
+        <span className="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="6" cy="6" r="3" />
+            <circle cx="18" cy="17" r="3" />
+            <circle cx="17" cy="6" r="2" />
+            <line x1="8.5" y1="7.5" x2="15.5" y2="15.5" />
+            <line x1="8.6" y1="4.4" x2="15.4" y2="5.6" />
+          </svg>
+        </span>
+        <div className="brand-titles">
+          <span className="brand-name">GrapiFy</span>
+          <span className="brand-page">{PAGE_LABELS[activePage] || 'Graph'}</span>
         </div>
+      </div>
 
-        <div id='button_container'>
-            <button id='addNodeButton' onClick={() => {
-                document.querySelector('#adding_node_form').style.display = "block";
-            }} type='button'>Add Node</button>
-            <button id='addEdgeButton' onClick={() => {
-                document.querySelector('#adding_edge_form').style.display = "block";
-            }} type='button'>Add Edge</button>
-        </div>
-        <form style={{ display: 'none' }} id='adding_edge_form' onSubmit={addEdge}>
-            <div style={{ marginBottom: '20px', padding: '10px', background: '#f0f0f0' }}>
-                <label>
-                    Source Node: {' '}
-                    <select value={sourceNode} onChange={(e) => setSourceNode(e.target.value)}>
-                        <option value="">Select source</option>
-                        {nodes.map(node => (
-                            <option key={node.id} value={node.id}>
-                                {node.data.label || `Node ${node.id}`}
-                            </option>
-                        ))}
-                    </select>
-                </label><br />
-                <label>
-                    Target Node:{' '}
-                    <select value={targetNode} onChange={(e) => setTargetNode(e.target.value)}>
-                        <option value="">Select target</option>
-                        {nodes.map(node => (
-                            <option key={node.id} value={node.id}>
-                                {node.data.label || `Node ${node.id}`}
-                            </option>
-                        ))}
-                    </select>
-                </label><br />
-                {showWeightInput ? (
-                    <label htmlFor="edge_weight">
-                        Edge Weight:{' '}
-                        <input type="number" name="edge_weight" id="edge_weight" onChange={(e) => setWeightInput(e.target.value)} />
-                    </label>
-                ) : null
-                }
-                <button type='submit' id='add' onClick={() => {
-                    document.querySelector('#adding_edge_form').style.display = "none";
-                }}>Add</button>
-            </div>
-        </form>
-        <form id='adding_node_form' onSubmit={addNodeWithName}>
-            <input type="text" name="node_name" id="node_name" placeholder='Node name' onChange={(e) => setNodeName(e.target.value)} />
-            <button type='submit' id='add' onClick={() => {
-                document.querySelector('#adding_node_form').style.display = "none";
-            }}>Add</button>
-        </form>
-    </>
-}
+      <nav className="brand-nav" aria-label="Graph types">
+        {PAGES.map((p) => (
+          <NavLink
+            key={p.to}
+            to={p.to}
+            className={({ isActive }) => (isActive ? 'brand-tab is-active' : 'brand-tab')}
+          >
+            {p.label}
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="brand-stats">
+        <span>{ctx?.nodes?.length ?? 0} nodes</span>
+        <span className="brand-dot" />
+        <span>{ctx?.edges?.length ?? 0} edges</span>
+      </div>
+    </header>
+  );
+};
+
 export default Header;
