@@ -19,6 +19,15 @@ const PAGE_LABELS = {
   '/Undirected-Weighted-Graph': 'Undirected Weighted',
 };
 
+// Legacy graph routes show live node/edge counts; dashboards/workspaces don't.
+const GRAPH_ROUTES = new Set([
+  '/Directed-Unweighted-Graph',
+  '/Directed-Weighted-Graph',
+  '/Undirected-Unweighted-Graph',
+  '/Undirected-Weighted-Graph',
+  '/graphs/directed-unweighted',
+]);
+
 /**
  * Floating brand pill: logo, current graph type, live node/edge counts
  * and compact graph-type tabs. All creation/editing UI lives in the
@@ -61,9 +70,15 @@ const Header = () => {
       </nav>
 
       <div className="brand-stats">
-        <span>{ctx?.nodes?.length ?? 0} nodes</span>
-        <span className="brand-dot" />
-        <span>{ctx?.edges?.length ?? 0} edges</span>
+        {GRAPH_ROUTES.has(activePage) ? (
+          <>
+            <span>{ctx?.nodes?.length ?? 0} nodes</span>
+            <span className="brand-dot" />
+            <span>{ctx?.edges?.length ?? 0} edges</span>
+          </>
+        ) : (
+          <span className="brand-track">{track.name}</span>
+        )}
       </div>
     </header>
   );

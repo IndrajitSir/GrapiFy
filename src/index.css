@@ -85,6 +85,44 @@
   --shadow-pop: 0 20px 48px rgba(15, 23, 42, 0.18);
 }
 
+/* ============================================================
+   Workspace themes (driven by data-workspace on <html>)
+   system  → slate/blueprint architecture studio
+   dsa     → dark terminal, neon syntax accents
+   ============================================================ */
+[data-workspace='system'] {
+  --ws-bg: #0b111c;
+  --ws-accent: #38bdf8;
+  --ws-accent-2: #818cf8;
+  --ws-grid: rgba(56, 189, 248, 0.08);
+  --ws-grid-line: rgba(56, 189, 248, 0.16);
+  --ws-font-label: var(--font-sans);
+}
+
+[data-workspace='dsa'] {
+  --ws-bg: #070a0f;
+  --ws-accent: #4ade80;
+  --ws-accent-2: #c084fc;
+  --ws-grid: rgba(74, 222, 128, 0.05);
+  --ws-grid-line: rgba(74, 222, 128, 0.12);
+  --ws-font-label: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+}
+
+/* Fallback defaults if workspace attr is missing */
+:root {
+  --ws-bg: var(--bg-base);
+  --ws-accent: var(--accent-cyan);
+  --ws-accent-2: var(--accent-purple);
+  --ws-grid: rgba(34, 211, 238, 0.06);
+  --ws-grid-line: rgba(34, 211, 238, 0.14);
+  --ws-font-label: var(--font-sans);
+}
+
+/* While a workspace is active, its own toolbar replaces the global brand pill */
+html[data-workspace] .brand-pill {
+  display: none;
+}
+
 /* ---------- Base reset ---------- */
 *,
 *::before,

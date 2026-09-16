@@ -1,0 +1,45 @@
+/* DSA workspace: terminal chrome */
+.workspace-dsa {
+  background:
+    radial-gradient(900px 500px at 20% -10%, var(--ws-grid), transparent 60%),
+    var(--ws-bg);
+}
+
+.ws-toolbar-hint {
+  border-right: none;
+  padding-right: 0;
+}
+.ws-mono-hint {
+  font-family: var(--ws-font-label);
+  font-size: 11.5px;
+  color: var(--ws-accent);
+  font-weight: 600;
+}
+
+.dsa-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.dsa-editor-area {
+  flex: 1;
+  min-height: 0;
+  margin: 74px 16px 16px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-glass);
+  background: #0a0d13;
+  overflow: hidden;
+}
+.dsa-editor-loading {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+
+@media (max-width: 720px) {
+  .dsa-editor-area {
+    margin: 74px 12px 12px 12px;
+  }
+}

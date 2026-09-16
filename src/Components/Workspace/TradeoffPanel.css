@@ -1,0 +1,208 @@
+/* Trade-off panel */
+.tf-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tf-actions {
+  display: flex;
+  gap: 8px;
+}
+.tf-add {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #04121a;
+  background: var(--ws-accent);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--ws-accent) 35%, transparent);
+  transition: transform 0.15s var(--spring), box-shadow 0.2s ease;
+}
+.tf-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--ws-accent) 45%, transparent);
+}
+.tf-reset {
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+}
+.tf-reset:hover {
+  color: var(--accent-rose);
+  border-color: color-mix(in srgb, var(--accent-rose) 40%, transparent);
+}
+
+.tf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--ws-accent) 30%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--ws-accent) 6%, transparent);
+}
+.tf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tf-field span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.tf-field input,
+.tf-field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.04);
+  outline: none;
+  font-size: 12.5px;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.tf-field input:focus,
+.tf-field textarea:focus {
+  border-color: var(--ws-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ws-accent) 18%, transparent);
+}
+.tf-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+.tf-cancel {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.tf-cancel:hover {
+  color: var(--text-primary);
+}
+.tf-save {
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #04121a;
+  background: var(--ws-accent);
+}
+
+.tf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tf-empty {
+  padding: 18px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+.tf-card {
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.tf-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tf-card-head h4 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.tf-card-head p {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.tf-card-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.tf-card-actions button {
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.tf-card-actions button:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.tf-card-actions button.danger:hover {
+  color: var(--accent-rose);
+}
+
+.tf-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.tf-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tf-col-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tf-col.pros .tf-col-label {
+  color: var(--accent-emerald);
+}
+.tf-col.cons .tf-col-label {
+  color: var(--accent-rose);
+}
+.tf-col li,
+.tf-item {
+  list-style: none;
+  font-size: 11.5px;
+  line-height: 1.45;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+}
+.tf-verdict {
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 10px;
+}
+.tf-verdict strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ws-accent);
+  margin-bottom: 4px;
+}
+.tf-verdict p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}

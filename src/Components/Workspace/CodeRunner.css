@@ -1,0 +1,175 @@
+/* DSA code runner: terminal + neon theme */
+.runner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.runner-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-glass);
+  flex-shrink: 0;
+}
+
+.runner-lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.runner-lang label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.runner-lang select {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+  background: var(--bg-hover);
+  outline: none;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.runner-file {
+  font-size: 11px;
+  color: var(--ws-accent);
+  font-family: var(--ws-font-label);
+  background: color-mix(in srgb, var(--ws-accent) 10%, transparent);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+
+.runner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.runner-clear {
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.runner-clear:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.runner-run {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #04121a;
+  background: var(--ws-accent);
+  box-shadow: 0 3px 14px color-mix(in srgb, var(--ws-accent) 35%, transparent);
+  transition: transform 0.15s var(--spring), box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.runner-run:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px color-mix(in srgb, var(--ws-accent) 45%, transparent);
+}
+.runner-run:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.runner-spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(4, 18, 26, 0.3);
+  border-top-color: #04121a;
+  animation: runner-spin 0.7s linear infinite;
+}
+@keyframes runner-spin {
+  to { transform: rotate(360deg); }
+}
+
+.runner-editor {
+  flex: 1;
+  min-height: 240px;
+  border-bottom: 1px solid var(--border-glass);
+}
+.runner-loading {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+
+.runner-console {
+  height: 190px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #04070b;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  overflow: hidden;
+}
+.runner-console-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-glass);
+}
+.runner-exit {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 700;
+  font-family: var(--ws-font-label);
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+}
+.runner-exit.ok {
+  color: var(--accent-emerald);
+  background: rgba(52, 211, 153, 0.12);
+}
+.runner-exit.fail {
+  color: var(--accent-rose);
+  background: rgba(251, 113, 133, 0.12);
+}
+.runner-console-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px;
+  font-family: var(--ws-font-label);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.runner-console-empty {
+  color: #3b4556;
+}
+.runner-log {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.runner-log.system {
+  color: var(--text-muted);
+  font-style: italic;
+}
+.runner-log.output {
+  color: #d1e7d5;
+}
+.runner-log.error {
+  color: #ff8f9d;
+}

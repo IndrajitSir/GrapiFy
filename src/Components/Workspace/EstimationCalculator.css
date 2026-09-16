@@ -1,0 +1,101 @@
+/* Estimation calculator */
+.est-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.est-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.est-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.est-field-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.est-field-label em {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.est-field input {
+  width: 100%;
+  padding: 8px 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.04);
+  outline: none;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.est-field input:focus {
+  border-color: var(--ws-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ws-accent) 18%, transparent);
+}
+
+.est-reset {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.est-reset:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.est-outputs {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.est-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-glass);
+}
+.est-row:last-child {
+  border-bottom: none;
+}
+.est-row span {
+  color: var(--text-secondary);
+}
+.est-row b {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.est-row.accent {
+  background: color-mix(in srgb, var(--ws-accent) 8%, transparent);
+}
+.est-row.accent b {
+  color: var(--ws-accent);
+}
+
+.est-note {
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}

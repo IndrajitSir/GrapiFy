@@ -104,6 +104,10 @@
   border-radius: 50%;
   background: var(--text-muted);
 }
+.brand-track {
+  color: var(--ws-accent);
+  font-weight: 600;
+}
 
 @media (max-width: 900px) {
   .brand-nav {

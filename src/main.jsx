@@ -14,6 +14,8 @@ import { UndirectedWeightedGraphProvider } from './context/UndirectedWeighted/Un
 import { PageProvider } from './context/PageTracker/PageProvider'
 import { TrackProvider } from './context/Track/TrackProvider'
 import TrackDashboard from './Components/Dashboard/TrackDashboard'
+import SystemDesignWorkspace from './Components/Workspace/SystemDesignWorkspace'
+import DSAWorkspace from './Components/Workspace/DSAWorkspace'
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -35,8 +37,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path='' element={<TrackDashboard />} />
-      <Route path='system-design' element={<DirectedWeightedGraph />} />
-      <Route path='dsa' element={<DirectedUnweightedGraph />} />
+      <Route path='system-design' element={<SystemDesignWorkspace />} />
+      <Route path='dsa' element={<DSAWorkspace />} />
       <Route path='graphs/directed-unweighted' element={<DirectedUnweightedGraph />} />
       <Route path='Directed-Unweighted-Graph' element={<DirectedUnweightedGraph />} />
       <Route path='Undirected-Unweighted-Graph' element={<UndirectedUnweightedGraph />} />
