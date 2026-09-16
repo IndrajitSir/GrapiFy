@@ -12,7 +12,9 @@ loader.config({ monaco });
 
 const Editor = lazy(() => import('@monaco-editor/react'));
 
-const RUN_ENDPOINT = 'https://onecompiler.com/api/console/run';
+// Same-origin route served by the Express proxy (server/app.js).
+// Vercel: api/run-code.js · Local dev: Vite proxies /api → http://localhost:4000
+const RUN_ENDPOINT = '/api/run-code';
 
 const LANGUAGES = [
   { id: 'javascript', name: 'JavaScript', file: 'main.js', template: 'console.log("Hello, World!");\n' },
@@ -136,7 +138,7 @@ const CodeRunner = () => {
         ...prev,
         {
           kind: 'error',
-          text: `Network / CORS error: ${err.message}. If the OneCompiler API blocks browser calls, this runner can be pointed at a proxy in src/Components/Workspace/CodeRunner.jsx.`,
+          text: `Failed to reach the code runner: ${err.message}. Make sure the Express proxy is running locally (npm run server) or that /api/run-code is deployed.`,
         },
       ]);
     } finally {

@@ -102,7 +102,9 @@ const SystemDesignWorkspace = () => {
               <Excalidraw
                 initialData={{ elements, appState: { viewBackgroundColor: 'transparent' } }}
                 onChange={(els) => setElements(els)}
-                UIOptions={{ canvasActions: { export: true, loadScene: true, saveAsImage: true } }}
+                // 0.18.x: `export` must be false | ExportOpts — omitting uses defaults;
+                // a boolean `true` crashes with "Cannot create property 'saveFileToDisk'".
+                UIOptions={{ canvasActions: { loadScene: true, saveAsImage: true } }}
               />
             </Suspense>
           ) : (
