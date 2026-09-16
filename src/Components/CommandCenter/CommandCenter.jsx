@@ -62,7 +62,7 @@ const download = (content, filename, mime = 'application/json') => {
  */
 const CommandCenter = ({ instance, onSearch, onLayoutMode, onFocusNode, directed, weighted }) => {
   const { Context } = usePageContext();
-  const ctx = Context();
+  const ctx = Context ? Context() : null;
   const nodes = ctx?.nodes || [];
   const setNodes = ctx?.setNodes;
   const edges = ctx?.edges || [];

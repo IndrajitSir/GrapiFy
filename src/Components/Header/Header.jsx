@@ -1,16 +1,19 @@
 import './Header.css';
 import { usePageContext } from '../../context/PageTracker/PageContext';
+import { useTrack } from '../../context/Track/TrackContext';
 import { NavLink } from 'react-router-dom';
 
 const PAGES = [
-  { to: '/', label: 'Dir · Unweighted' },
-  { to: '/Directed-Weighted-Graph', label: 'Dir · Weighted' },
-  { to: '/Undirected-Unweighted-Graph', label: 'Undir · Unweighted' },
-  { to: '/Undirected-Weighted-Graph', label: 'Undir · Weighted' },
+  { to: '/', label: 'Overview' },
+  { to: '/system-design', label: 'Systems workspace' },
+  { to: '/dsa', label: 'DSA workspace' },
 ];
 
 const PAGE_LABELS = {
-  '/': 'Directed Unweighted',
+  '/': 'Track overview',
+  '/system-design': 'System Design workspace',
+  '/dsa': 'DSA workspace',
+  '/Directed-Unweighted-Graph': 'Directed Unweighted',
   '/Directed-Weighted-Graph': 'Directed Weighted',
   '/Undirected-Unweighted-Graph': 'Undirected Unweighted',
   '/Undirected-Weighted-Graph': 'Undirected Weighted',
@@ -23,7 +26,8 @@ const PAGE_LABELS = {
  */
 const Header = () => {
   const { activePage, Context } = usePageContext();
-  const ctx = Context();
+  const { track } = useTrack();
+  const ctx = Context ? Context() : null;
 
   return (
     <header className="brand-pill glass">
@@ -39,7 +43,7 @@ const Header = () => {
         </span>
         <div className="brand-titles">
           <span className="brand-name">GrapiFy</span>
-          <span className="brand-page">{PAGE_LABELS[activePage] || 'Graph'}</span>
+          <span className="brand-page">{PAGE_LABELS[activePage] || `${track.name} workspace`}</span>
         </div>
       </div>
 
@@ -48,6 +52,7 @@ const Header = () => {
           <NavLink
             key={p.to}
             to={p.to}
+            end={p.to === '/'}
             className={({ isActive }) => (isActive ? 'brand-tab is-active' : 'brand-tab')}
           >
             {p.label}

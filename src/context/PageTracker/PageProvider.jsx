@@ -12,13 +12,13 @@ export const PageProvider = ({ children }) => {
     if (activePage === '/Undirected-Weighted-Graph') {
       const useUndirectedWeighted = () => useContext(UndirectedWeightedContext);
       return useUndirectedWeighted;
-    } else if (activePage === '/Directed-Weighted-Graph') {
+    } else if (activePage === '/Directed-Weighted-Graph' || activePage === '/system-design') {
       const useDirectedWeighted = () => useContext(DirectedWeightedContext);
       return useDirectedWeighted;
     } else if (activePage === '/Undirected-Unweighted-Graph') {
       const useUndirectedUnweighted = () => useContext(UndirectedUnweightedContext);
       return useUndirectedUnweighted;
-    } else if (activePage === '/') {
+    } else if (activePage === '/' || activePage === '/dsa' || activePage === '/graphs/directed-unweighted') {
       const useDirectedUnweighted = () => useContext(DirectedUnweightedContext);
       return useDirectedUnweighted;
     }
@@ -30,7 +30,7 @@ export const PageProvider = ({ children }) => {
       return useUndirectedWeighted;
     }
 
-    if (activePage === '/Directed-Weighted-Graph') {
+    if (activePage === '/Directed-Weighted-Graph' || activePage === '/system-design') {
       const useDirectedWeighted = () => useContext(DirectedWeightedContext);
       return useDirectedWeighted;
     }

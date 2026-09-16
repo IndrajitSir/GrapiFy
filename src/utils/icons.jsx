@@ -115,3 +115,49 @@ export const CATEGORIES = {
 };
 
 export const categoryColor = (category) => (CATEGORIES[category] || CATEGORIES.cyan).accent;
+
+const uiIcon = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.7,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+};
+
+export const NetworkIcon = (props) => (
+  <svg viewBox="0 0 24 24" {...uiIcon} {...props}>
+    <circle cx="12" cy="5" r="3" /><circle cx="5" cy="18" r="3" /><circle cx="19" cy="18" r="3" />
+    <path d="m10.5 7.5-4 7.5M13.5 7.5l4 7.5M8 18h8" />
+  </svg>
+);
+
+export const TreeIcon = (props) => (
+  <svg viewBox="0 0 24 24" {...uiIcon} {...props}>
+    <circle cx="12" cy="5" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="18" r="2.5" />
+    <path d="M12 7.5V12M12 12H6v3.5M12 12h6v3.5" />
+  </svg>
+);
+
+export const CodeIcon = (props) => (
+  <svg viewBox="0 0 24 24" {...uiIcon} {...props}>
+    <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" />
+  </svg>
+);
+
+export const GitForkIcon = (props) => (
+  <svg viewBox="0 0 24 24" {...uiIcon} {...props}>
+    <circle cx="6" cy="5" r="2.5" /><circle cx="18" cy="19" r="2.5" /><circle cx="18" cy="5" r="2.5" />
+    <path d="M6 7.5v3a5 5 0 0 0 5 5h4M18 7.5v9" />
+  </svg>
+);
+
+export const IconMap = {
+  server: ServerIcon,
+  database: DatabaseIcon,
+  network: NetworkIcon,
+  cloud: CloudIcon,
+  tree: TreeIcon,
+  code: CodeIcon,
+  fork: GitForkIcon,
+  cpu: CpuIcon,
+};

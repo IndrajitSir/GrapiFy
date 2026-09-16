@@ -12,6 +12,8 @@ import { DirectedWeightedGraphProvider } from './context/DirectedWeighted/Direct
 import { UndirectedUnweightedGraphProvider } from './context/UndirectedUnweighted/UndirectedUnweightedProvider'
 import { UndirectedWeightedGraphProvider } from './context/UndirectedWeighted/UndirectedWeightedProvider'
 import { PageProvider } from './context/PageTracker/PageProvider'
+import { TrackProvider } from './context/Track/TrackProvider'
+import TrackDashboard from './Components/Dashboard/TrackDashboard'
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -32,17 +34,21 @@ import { PageProvider } from './context/PageTracker/PageProvider'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route path='' element={<DirectedUnweightedGraph />} />
+      <Route path='' element={<TrackDashboard />} />
+      <Route path='system-design' element={<DirectedWeightedGraph />} />
+      <Route path='dsa' element={<DirectedUnweightedGraph />} />
+      <Route path='graphs/directed-unweighted' element={<DirectedUnweightedGraph />} />
+      <Route path='Directed-Unweighted-Graph' element={<DirectedUnweightedGraph />} />
       <Route path='Undirected-Unweighted-Graph' element={<UndirectedUnweightedGraph />} />
       <Route path='Undirected-Weighted-Graph' element={<UndirectedWeightedGraph />} />
-      {/* <Route path='Directed-Unweighted-Graph' element={<DirectedUnweightedGraph />} /> */}
       <Route path='Directed-Weighted-Graph' element={<DirectedWeightedGraph />} />
     </Route>
   )
 )
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <PageProvider>
+    <TrackProvider>
+      <PageProvider>
         <DirectedUnweightedGraphProvider>
           <DirectedWeightedGraphProvider>
             <UndirectedUnweightedGraphProvider>
@@ -52,6 +58,7 @@ createRoot(document.getElementById('root')).render(
             </UndirectedUnweightedGraphProvider>
           </DirectedWeightedGraphProvider>
         </DirectedUnweightedGraphProvider>
-    </PageProvider>
+      </PageProvider>
+    </TrackProvider>
   </StrictMode >
 )
